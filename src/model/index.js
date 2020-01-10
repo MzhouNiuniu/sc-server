@@ -1,0 +1,6 @@
+exports.course = require('./course')
+exports.questionBank = require('./questionBank')
+exports.knowledge = require('./knowledge')
+exports.headline = require('./headline')
+exports.administrator = require('./administrator')
+exports.certificate = require('./certificate')
