@@ -1,12 +1,9 @@
-const Model = require("../model/index").questionBank;
-const KModel = require("../model/index").knowledge;
-
-const formidable = require('formidable');
+const Model = require("../model/index").test;
 const {server, siteFunc} = require('../../utils');
 var moment = require('moment')
 // import config from '../../config/settings'
-//题库
-class QuestionBank {
+//
+class test {
     constructor() {
         // super()
     }
@@ -14,16 +11,13 @@ class QuestionBank {
         try {
             const req =ctx.request.body
             const params={
-                topic:req.topic,
+                title:req.title,
+                content:req.content,
                 dataType:req.dataType,
-                type:req.type,
-                knowledgeId:req.knowledgeId?req.knowledgeId:null,
-                option:JSON.stringify(req.option),
-                rightAnswer:JSON.stringify(req.rightAnswer),
+                cover:JSON.stringify(req.cover),
                 releaseTime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
             }
-             const item= await Model.create(params)
-
+              await Model.create(params)
             ctx.body=siteFunc.renderApiData(ctx, 200, '插入成功')
         }
         catch (err) {
@@ -51,7 +45,6 @@ class QuestionBank {
         try {
             const req = ctx.request.query
             const res = await Model.deleteById(req.id)
-            console.log(res)
             if(res>0){
                 ctx.body=siteFunc.renderApiData(ctx, 200, 'ok')
 
@@ -67,9 +60,10 @@ class QuestionBank {
     async getDetailsById(ctx){
         try {
         const req = ctx.request.query
+
         const res = await Model.getDetailsById(req.id)
-            res.option=JSON.parse(res.option)
-            res.rightAnswer=JSON.parse(res.rightAnswer)
+            // res.cover=JSON.parse(req.cover)
+            console.log(res)
             ctx.body=siteFunc.renderApiData(ctx, 200, 'ok',res)
         }
         catch (err) {
@@ -83,16 +77,13 @@ class QuestionBank {
         try {
             const req =ctx.request.body
             const params={
-                name:req.name,
-                label:JSON.stringify(req.label),
-                banner:JSON.stringify(req.banner),
-                brief:req.brief,
-                advantage:JSON.stringify(req.advantage),
-                outline:req.outline,
+                title:req.title,
+                content:req.content,
                 cover:JSON.stringify(req.cover),
+                dataType:req.dataType,
                 id:req.id,
-                knowledgeId:req.knowledgeId,
-                releaseTime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+                releaseTime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                status:0
             }
             await Model.changeInFo(params)
             ctx.body=siteFunc.renderApiData(ctx, 200, '修改成功')
@@ -141,4 +132,4 @@ class QuestionBank {
 
 }
 
-module.exports = new QuestionBank();
+module.exports = new test();

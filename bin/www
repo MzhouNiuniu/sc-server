@@ -8,12 +8,17 @@ require('babel-core/register');
 var app = require('../app');
 var debug = require('debug')('demo:server');
 var http = require('http');
-
+var https = require('https');
+var fs=require('fs')
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8090');
+var port = normalizePort(process.env.PORT || '80');
+const options = {
+    key : fs.readFileSync("./utils/http/3545167__shuchen.online.key"),
+    cert: fs.readFileSync("./utils/http/3545167__shuchen.online.pem")
+}
 // app.set('port', port);
 console.log(port)
 /**
@@ -33,6 +38,17 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
+
+
+
+// 创建https 服务
+var httpsServer = https.createServer(options, app.callback());
+httpsServer.listen(443);   // 默认监听443
+httpsServer.on('error', onError);
+httpsServer.on('listening', onListening)
+
+
+
 
 function normalizePort(val) {
   var port = parseInt(val, 10);

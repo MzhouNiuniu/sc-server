@@ -1,9 +1,10 @@
-const Model = require("../../model/client/knowledge");
+const Model = require("../../model/client/test");
+
 const {server, siteFunc} = require('../../../utils');
 var moment = require('moment')
 // import config from '../../config/settings'
 //
-class knowledge {
+class test {
     constructor() {
         // super()
     }
@@ -25,13 +26,13 @@ class knowledge {
         try {
             const req = ctx.request.query
             const res = await Model.getDetailsById(req.id)
-
             ctx.body=siteFunc.renderApiData(ctx, 200, 'ok',res)
         }
         catch (err) {
             ctx.body=siteFunc.renderApiErr(ctx, 500, err)
         }
     }
+
 }
 
-module.exports = new knowledge();
+module.exports = new test();

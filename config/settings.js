@@ -17,12 +17,9 @@ module.exports = {
     HOST: '127.0.0.1',
     PORT: 3306,
     USERNAME: 'root',
+    // PASSWORD:'',
     PASSWORD: '123456',
-    // DB: 'dry-euity',
-    // HOST: '192.168.8.242',
-    // PORT: 3306,
-    // USERNAME: 'dry-euity',
-    // PASSWORD: 'oraro@dry',
+
 
     //公众号配置
     APPID :'wx9db482df5987c784',
@@ -35,7 +32,9 @@ module.exports = {
     //短信接口配置
     // sendMsgUrl:'http://192.168.8.230:30042'
     sendMsgUrl:'http://192.168.0.181:30033' ,  //线上
-    baseUrl:'http://192.168.9.105:8090/upload/',
+    baseUrl:'http://192.168.9.105:3000/upload/' ,
+    // baseUrl:'http://http://112.124.4.177:3000/upload/',
+
 };
 
 

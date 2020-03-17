@@ -78,7 +78,8 @@ class Knowledge {
                 content:req.content,
                 dataType:req.dataType,
                 id:req.id,
-                releaseTime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+                releaseTime: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+                status:0
             }
             await Model.changeInFo(params)
             ctx.body=siteFunc.renderApiData(ctx, 200, '修改成功')

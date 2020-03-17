@@ -1,13 +1,13 @@
 const db = require('../../schema/index'); // 引入配置文件
 let Sequelize = db.sequelize;
-const Schema = Sequelize.import('../../schema/knowledge');
-const SchemaQ = Sequelize.import('../../schema/questionBank');
+const Schema = Sequelize.import('../../schema/test');
+const USchema = Sequelize.import('../../schema/user');
 
 const Sequelizes = require('sequelize');
 const Op = Sequelizes.Op;
 const size = 10 // 每页10条数据
 const page = 1 // 页数
-class knowledgeModel {
+class test {
     async getList(data) {
         return await Schema.findAndCountAll({
             where: {
@@ -23,25 +23,12 @@ class knowledgeModel {
     }
 
     async getDetailsById(id) {
-        let k = await Schema.findByPk(id);
-        let q = await  SchemaQ.findAll({
-                where: {
-                    knowledgeId: id,
-                }
-            }
-        )
-        await Schema.update(
-           {readNumber:Sequelize.literal('readNumber+1')},
-           {
-               where: {
-                   id: id,
-               }
-           })
-        let res={
-            k,q
-        }
+        let res = await Schema.findByPk(id);
+
+
         return res
     }
+
 }
 
-module.exports = new knowledgeModel();
+module.exports = new test();

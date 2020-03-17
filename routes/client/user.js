@@ -6,5 +6,9 @@ router.prefix('/client/user')
 router.post('/publish', model.publish)
 router.get('/wxLogin', model.wxLogin)
 router.post('/changeInFo', model.changeInFo)
+router.post('/changeTest', model.changeTest)
+router.get('/getAttention', model.getAttention)
+router.get('/getTest', model.getTest)
+router.get('/getMyTest', model.getMyTest)
 
 module.exports = router

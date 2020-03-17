@@ -34,10 +34,9 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
         },
         haveLessons:{
-            //已学课程
+            //考试报名
             type: DataTypes.TEXT,
             allowNull: true,
-
         },
         haveTest:{
             //已做测试
@@ -51,6 +50,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         selfTest:{
             //自测
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
+        dayTest:{
+            //每日题库
             type: DataTypes.TEXT,
             allowNull: true,
         },

@@ -21,6 +21,7 @@ const administrator = require('./routes/administrator')
 const certificate = require('./routes/certificate')
 const course = require('./routes/course')
 const oss =require('./routes/oss')
+const test =require('./routes/test')
 
 //客户端
 const index =require('./routes/index')
@@ -28,6 +29,10 @@ const knowledgec =require('./routes/client/knowledge')
 
 const questionBankc =require('./routes/client/questionBank')
 const user =require('./routes/client/user')
+const coursec =require('./routes/client/course')
+const testc =require('./routes/client/test')
+const sslify = require('koa-sslify').default;
+app.use(sslify());
 onerror(app)
 app.use(xmlParser())
 app.use(koaBody({
@@ -85,12 +90,16 @@ app.use(knowledge.routes(), knowledge.allowedMethods())
 app.use(headline.routes(), headline.allowedMethods())
 app.use(administrator.routes(), administrator.allowedMethods())
 app.use(certificate.routes(), certificate.allowedMethods())
+app.use(test.routes(), test.allowedMethods())
+
 
 //客户端接口
 app.use(index.routes(), index.allowedMethods())
 app.use(knowledgec.routes(), knowledgec.allowedMethods())
 app.use(questionBankc.routes(), questionBankc.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
+app.use(coursec.routes(), coursec.allowedMethods())
+app.use(testc.routes(), testc.allowedMethods())
 
 
 // app.use(order.routes(), order.allowedMethods())

@@ -38,6 +38,24 @@ class course {
             ctx.body=siteFunc.renderApiErr(ctx, 500, err)
         }
     }
+    async  attention(ctx){
+        const req = ctx.request.body
+        const params={
+            openid:req.openid,
+            followed:JSON.stringify(req.followed)
+        }
+        const res = await Model.changeAttention(params)
+        ctx.body=siteFunc.renderApiData(ctx, 200, 'ok')
+    }
+    async  applied(ctx){
+        const req = ctx.request.body
+        const params={
+            openid:req.openid,
+            applied:JSON.stringify(req.applied)
+        }
+        const res = await Model.changeAttention(params)
+        ctx.body=siteFunc.renderApiData(ctx, 200, 'ok')
+    }
 }
 
 module.exports = new course();
